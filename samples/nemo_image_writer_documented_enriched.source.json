@@ -1,0 +1,20 @@
+[
+  {
+    "image_id": "documented-enriched-001",
+    "tar_file": "samples/shards/images-documented-enriched-000000.tar",
+    "member_name": "documented-enriched-001.jpg",
+    "original_path": "synthetic://nemo-documented-enriched/documented-enriched-001.png",
+    "metadata": "{'source_url': 'https://example.com/nemo-documented-enriched/documented-enriched-001', 'caption': 'Synthetic documented-enriched candidate'}",
+    "aesthetic_score": 0.82,
+    "nsfw_score": 0.01
+  },
+  {
+    "image_id": "documented-enriched-002",
+    "tar_file": "samples/shards/images-documented-enriched-000000.tar",
+    "member_name": "documented-enriched-002.jpg",
+    "original_path": "synthetic://nemo-documented-enriched/documented-enriched-002.png",
+    "metadata": "{}",
+    "aesthetic_score": 0.18,
+    "nsfw_score": 0.02
+  }
+]

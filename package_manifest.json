@@ -1,0 +1,73 @@
+{
+  "audit_scope": "curated_subset",
+  "excluded_counts": {
+    "excluded": 0,
+    "review_required": 0,
+    "rewrite_required": 0
+  },
+  "included_count": 40,
+  "included_files": [
+    "LICENSE",
+    "README.md",
+    "configs/nemo_parquet_public_files.txt",
+    "configs/nvidia_release_readiness_policy.json",
+    "docs/nemo-image-writer-parquet-compatibility.md",
+    "pyproject.toml",
+    "samples/nemo_image_writer_documented_enriched.parquet",
+    "samples/nemo_image_writer_documented_enriched.source.json",
+    "samples/nemo_image_writer_source_first.parquet",
+    "samples/nemo_image_writer_source_first.source.json",
+    "samples/nvidia_release_readiness_metadata.jsonl",
+    "scripts/build_nemo_image_writer_parquet_fixtures.py",
+    "src/vulca_curator_adapter/__init__.py",
+    "src/vulca_curator_adapter/__main__.py",
+    "src/vulca_curator_adapter/cli.py",
+    "src/vulca_curator_adapter/evidence.py",
+    "src/vulca_curator_adapter/ingest/__init__.py",
+    "src/vulca_curator_adapter/ingest/cosmos.py",
+    "src/vulca_curator_adapter/ingest/generic_jsonl.py",
+    "src/vulca_curator_adapter/ingest/nemo.py",
+    "src/vulca_curator_adapter/ingest/nemo_image_writer.py",
+    "src/vulca_curator_adapter/ingest/nemo_parquet.py",
+    "src/vulca_curator_adapter/ingest/source_gate.py",
+    "src/vulca_curator_adapter/ingest/visual_evidence.py",
+    "src/vulca_curator_adapter/packets/__init__.py",
+    "src/vulca_curator_adapter/packets/review_packet.py",
+    "src/vulca_curator_adapter/safety_markers.py",
+    "src/vulca_curator_adapter/schemas.py",
+    "src/vulca_curator_adapter/triage/__init__.py",
+    "src/vulca_curator_adapter/triage/decision.py",
+    "src/vulca_curator_adapter/triage/policies.py",
+    "src/vulca_curator_adapter/writers/__init__.py",
+    "src/vulca_curator_adapter/writers/html.py",
+    "src/vulca_curator_adapter/writers/jsonl.py",
+    "src/vulca_curator_adapter/writers/review_report.py",
+    "src/vulca_curator_adapter/writers/summary.py",
+    "src/vulca_curator_adapter/writers/visual_report.py",
+    "tests/test_nemo_image_writer.py",
+    "tests/test_nemo_parquet.py",
+    "tests/test_nemo_parquet_fixtures.py"
+  ],
+  "human_gate": {
+    "confirmed": true,
+    "confirmed_at": "2026-07-14T22:07:29Z",
+    "confirmed_by": "project_owner",
+    "required": true
+  },
+  "package_state": "human_review_confirmed_for_publication",
+  "publication": {
+    "repository": "vulca-org/vulca-nemo-curator-adapter",
+    "source_contents": "exact_curated_candidate",
+    "visibility": "public"
+  },
+  "publication_mode": "curated_source_package_only",
+  "repo_publication": "do_not_publish_complete_repo",
+  "safety_boundary": {
+    "complete_repo": false,
+    "generated_from_allowlist": true,
+    "repo_published": false,
+    "public_candidate_repository_published": true,
+    "requires_human_review": false
+  },
+  "schema_version": "vulca.public_source_candidate_package.v1"
+}

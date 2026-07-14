@@ -1,0 +1,15 @@
+{
+  "schema_version": "vulca.policy.profile_config.v1",
+  "profile": "creative-release",
+  "config_ref": "configs/nvidia_release_readiness_policy.json",
+  "thresholds": {
+    "aesthetic_min": 0.25,
+    "nsfw_block": 0.5
+  },
+  "gates": {
+    "require_source_for_release": true,
+    "generated_media_review": true,
+    "source_gate_review": false,
+    "visual_evidence_review": false
+  }
+}

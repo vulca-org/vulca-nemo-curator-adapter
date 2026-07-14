@@ -1,0 +1,16 @@
+[
+  {
+    "image_id": "source-first-001",
+    "tar_file": "samples/shards/images-source-first-000000.tar",
+    "member_name": "source-first-001.jpg",
+    "original_path": "synthetic://nemo-source/source-first-001.png",
+    "metadata": "{'source_url': 'https://example.com/nemo-source/source-first-001', 'caption': 'Synthetic source-first candidate'}"
+  },
+  {
+    "image_id": "source-first-002",
+    "tar_file": "samples/shards/images-source-first-000000.tar",
+    "member_name": "source-first-002.jpg",
+    "original_path": "synthetic://nemo-source/source-first-002.png",
+    "metadata": "{}"
+  }
+]

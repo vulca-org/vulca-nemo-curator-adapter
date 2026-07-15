@@ -5,6 +5,12 @@
     "review_required": 0,
     "rewrite_required": 0
   },
+  "human_gate": {
+    "confirmed": true,
+    "confirmed_at": "2026-07-15T09:07:51Z",
+    "confirmed_by": "project_owner",
+    "required": true
+  },
   "included_count": 46,
   "included_files": [
     "LICENSE",
@@ -54,14 +60,21 @@
     "tests/test_nemo_parquet.py",
     "tests/test_nemo_parquet_fixtures.py"
   ],
-  "package_state": "candidate_requires_human_review",
+  "package_state": "human_review_confirmed_for_publication",
+  "publication": {
+    "candidate_digest_sha256": "317fcf67ed522c088bb08755403cc4eeb456ac1fdba03f7a587d616ccc90cc58",
+    "repository": "vulca-org/vulca-nemo-curator-adapter",
+    "source_contents": "exact_curated_candidate",
+    "visibility": "public"
+  },
   "publication_mode": "curated_source_package_only",
-  "repo_publication": "do_not_publish_repo",
+  "repo_publication": "do_not_publish_complete_repo",
   "safety_boundary": {
     "complete_repo": false,
     "generated_from_allowlist": true,
+    "public_candidate_repository_published": true,
     "repo_published": false,
-    "requires_human_review": true
+    "requires_human_review": false
   },
   "schema_version": "vulca.public_source_candidate_package.v1"
 }

@@ -16,11 +16,19 @@ dependencies = [
 
 [project.optional-dependencies]
 nemo-parquet = ["pyarrow>=17"]
+handoff-docs = [
+  "pypdf>=5,<7",
+  "reportlab>=4,<5",
+  "svglib>=1.5,<1.6",
+]
 dev = [
   "build>=1.2,<2",
   "hatchling>=1.25",
   "pyarrow>=17",
+  "pypdf>=5,<7",
   "pytest>=8,<9",
+  "reportlab>=4,<5",
+  "svglib>=1.5,<1.6",
 ]
 
 [project.scripts]
@@ -36,7 +44,12 @@ include = [
   "/README.md",
   "/configs/nemo_parquet_public_files.txt",
   "/configs/nvidia_release_readiness_policy.json",
+  "/docs/assets/nvidia-maintainer-handoff/contract-mapping.svg",
+  "/docs/assets/nvidia-maintainer-handoff/integration-boundary.svg",
+  "/docs/assets/nvidia-maintainer-handoff/reproduction-evidence.svg",
   "/docs/nemo-image-writer-parquet-compatibility.md",
+  "/docs/nvidia-maintainer-handoff.md",
+  "/docs/nvidia-maintainer-handoff.pdf",
   "/pyproject.toml",
   "/samples/nemo_image_writer_documented_enriched.parquet",
   "/samples/nemo_image_writer_documented_enriched.source.json",
@@ -44,6 +57,7 @@ include = [
   "/samples/nemo_image_writer_source_first.source.json",
   "/samples/nvidia_release_readiness_metadata.jsonl",
   "/scripts/build_nemo_image_writer_parquet_fixtures.py",
+  "/scripts/build_nvidia_maintainer_handoff.py",
   "/src/vulca_curator_adapter/__init__.py",
   "/src/vulca_curator_adapter/__main__.py",
   "/src/vulca_curator_adapter/cli.py",

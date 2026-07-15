@@ -5,13 +5,18 @@
     "review_required": 0,
     "rewrite_required": 0
   },
-  "included_count": 40,
+  "included_count": 46,
   "included_files": [
     "LICENSE",
     "README.md",
     "configs/nemo_parquet_public_files.txt",
     "configs/nvidia_release_readiness_policy.json",
+    "docs/assets/nvidia-maintainer-handoff/contract-mapping.svg",
+    "docs/assets/nvidia-maintainer-handoff/integration-boundary.svg",
+    "docs/assets/nvidia-maintainer-handoff/reproduction-evidence.svg",
     "docs/nemo-image-writer-parquet-compatibility.md",
+    "docs/nvidia-maintainer-handoff.md",
+    "docs/nvidia-maintainer-handoff.pdf",
     "pyproject.toml",
     "samples/nemo_image_writer_documented_enriched.parquet",
     "samples/nemo_image_writer_documented_enriched.source.json",
@@ -19,6 +24,7 @@
     "samples/nemo_image_writer_source_first.source.json",
     "samples/nvidia_release_readiness_metadata.jsonl",
     "scripts/build_nemo_image_writer_parquet_fixtures.py",
+    "scripts/build_nvidia_maintainer_handoff.py",
     "src/vulca_curator_adapter/__init__.py",
     "src/vulca_curator_adapter/__main__.py",
     "src/vulca_curator_adapter/cli.py",
@@ -48,26 +54,14 @@
     "tests/test_nemo_parquet.py",
     "tests/test_nemo_parquet_fixtures.py"
   ],
-  "human_gate": {
-    "confirmed": true,
-    "confirmed_at": "2026-07-14T22:07:29Z",
-    "confirmed_by": "project_owner",
-    "required": true
-  },
-  "package_state": "human_review_confirmed_for_publication",
-  "publication": {
-    "repository": "vulca-org/vulca-nemo-curator-adapter",
-    "source_contents": "exact_curated_candidate",
-    "visibility": "public"
-  },
+  "package_state": "candidate_requires_human_review",
   "publication_mode": "curated_source_package_only",
-  "repo_publication": "do_not_publish_complete_repo",
+  "repo_publication": "do_not_publish_repo",
   "safety_boundary": {
     "complete_repo": false,
     "generated_from_allowlist": true,
     "repo_published": false,
-    "public_candidate_repository_published": true,
-    "requires_human_review": false
+    "requires_human_review": true
   },
   "schema_version": "vulca.public_source_candidate_package.v1"
 }

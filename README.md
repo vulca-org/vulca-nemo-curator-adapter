@@ -1,22 +1,76 @@
-# VULCA Release-Readiness Stage
+# NeMo Curator Parquet Boundary Adapter
 
-VULCA is a workflow-native release-readiness stage for Curator-like metadata.
+A dedicated, source-pinned adapter for the real NeMo Curator `ImageWriterStage` Parquet writer boundary at commit `15cc645cbf9e9314fed9e11fc89f6535ea9a8820`.
 
-It turns high-throughput curation outputs into source-aware, owner-routed, human-gated `ReviewPacket` and `EvidenceLedger` objects for enterprise release workflows.
+> **Engineering handoff.** This repository is prepared for NeMo Curator maintainer review. The request is narrow: validate the pinned boundary and route it to the appropriate technical owner. This is not a recruiting request, and no NVIDIA endorsement or upstream integration is claimed.
+
+[**Open the two-page technical brief (PDF)**](docs/nvidia-maintainer-handoff.pdf)
+
+| Verified evidence | Public artifact |
+| --- | --- |
+| 87 public tests | three focused allowlisted test files |
+| 2 source-first rows | exact five-column writer fixture |
+| 2 documented-enriched rows | optional-score compatibility fixture |
+| 4 JSONL compatibility rows | preserved legacy path |
+
+![NeMo ImageWriterStage integration boundary](docs/assets/nvidia-maintainer-handoff/integration-boundary.svg)
+
+## Exact Tested Boundary
+
+- Upstream: `NVIDIA-NeMo/Curator@15cc645cbf9e9314fed9e11fc89f6535ea9a8820`
+- Required columns: `image_id`, `tar_file`, `member_name`, `original_path`, `metadata`
+- Optional documented fields: `aesthetic_score`, `nsfw_score`
+- Adapter contract: `nemo.image_writer.parquet.source-first.v1`
+- Optional values are preserved when present and never invented when absent.
+
+![Pinned Parquet contract and mapping](docs/assets/nvidia-maintainer-handoff/contract-mapping.svg)
+
+## Five-Minute Reproduction
+
+```bash
+python3.11 -m pip install -e '.[nemo-parquet,dev]'
+python3.11 scripts/build_nemo_image_writer_parquet_fixtures.py --source-dir samples --out samples
+python3.11 -m pytest -p no:cacheprovider -q
+python3.11 -m vulca_curator_adapter triage samples/nemo_image_writer_source_first.parquet \
+  --parser nemo \
+  --profile creative-release \
+  --out demo-output
+```
+
+The fixture is synthetic and generated from readable JSON. The command does not execute NeMo Curator.
+
+![Reproducible evidence chain](docs/assets/nvidia-maintainer-handoff/reproduction-evidence.svg)
+
+## Inspectable Evidence
+
+| Claim | Inspect |
+| --- | --- |
+| writer source contract | `docs/nemo-image-writer-parquet-compatibility.md` |
+| exact source-first rows | `samples/nemo_image_writer_source_first.source.json` and `.parquet` |
+| optional documented scores | `samples/nemo_image_writer_documented_enriched.source.json` and `.parquet` |
+| mapper and reader behavior | `tests/test_nemo_image_writer.py`, `tests/test_nemo_parquet.py`, `tests/test_nemo_parquet_fixtures.py` |
+| exact curated package | `configs/nemo_parquet_public_files.txt` and `package_manifest.json` |
+
+## Claim Boundaries
+
+- No full NeMo Curator, CUDA, DALI, Ray, Xenna, GPU, multi-shard, or tar-member execution claim.
+- No generic NeMo or Cosmos compatibility claim.
+- No legal, rights, safety, release certification, NVIDIA endorsement, or upstream adoption claim.
+- Local generated outputs remain unapproved and outside the curated source package.
+
+## Maintainer Review Questions
+
+1. Is the pinned five-column writer boundary represented accurately?
+2. Is optional documented-score handling an appropriate forward-compatible boundary?
+3. Which NeMo Curator owner or contribution surface should evaluate this adapter next?
+
+## VULCA Release-Readiness Reference
+
+VULCA is a workflow-native release-readiness stage for Curator-like metadata. It turns high-throughput curation outputs into source-aware, owner-routed, human-gated `ReviewPacket` and `EvidenceLedger` objects for enterprise release workflows.
 
 ```text
 Curator-like metadata -> ReleaseReadinessStage -> ReviewPacket -> HumanGate -> EvidenceLedger
 ```
-
-## At A Glance
-
-| Area | What This Repo Shows | Reader Takeaway |
-| --- | --- | --- |
-| Workflow fit | A downstream stage after metadata export or write | VULCA is a handoff stage, not a replacement for curation or acceleration |
-| Data object | `ReviewPacket` plus `EvidenceLedger` | Release review becomes structured and traceable |
-| Policy surface | Review lanes, owner routes, missing fields, human gate | Enterprise release checks can be routed before public or operational use |
-| Evidence | Source fixtures, focused tests, package manifest, and locally generated run evidence | A reviewer can compare shipped inputs with generated outputs |
-| Candidate fixtures | 2-row source-first Parquet fixture, 2-row documented-enriched Parquet fixture, and 4-row JSONL sample | Every candidate data claim is inspectable and reproducible from shipped files |
 
 ## Why This Exists
 
@@ -38,7 +92,6 @@ The repository is built around one stable contract:
 2. Apply a policy profile to route each signal into release-readiness lanes.
 3. Emit `ReviewPacket` objects for row-level handoff.
 4. Emit `EvidenceLedger` objects for run-level traceability.
-5. Build an allowlisted source candidate and local audit outputs without approving publication.
 
 ## Workflow Placement
 
@@ -151,9 +204,9 @@ sequenceDiagram
 | Layer | What It Shows | Why It Matters |
 | --- | --- | --- |
 | `run_manifest.json` | parser, profile, counts, outputs, safety boundary | A reviewer can identify exactly what run produced the package |
-| `operation_trace.jsonl` | input row to signal to lane to packet id | Row-level decisions are inspectable without relying on a screenshot |
+| `operation_trace.jsonl` | input row to signal to lane to packet id | Structured evidence makes row-level decisions directly inspectable |
 | `review_packets.jsonl` | owner route, review lens, missing fields, human gate | Release review has a stable object that can move between systems |
-| `safety_checks.json` | path leakage, public-ready state, unsafe HTML markers | External package generation is gated before sharing |
+| `safety_checks.json` | path leakage, public-ready state, unsafe presentation markers | External package generation is gated before sharing |
 | `package_manifest.json` | included files and excluded surfaces | Recipient materials stay separated from local engineering artifacts |
 
 ## Policy Lanes
@@ -178,6 +231,15 @@ sequenceDiagram
 - `run_manifest.json`: parser, profile, counts, outputs, and safety boundary for a run.
 - `operation_trace.jsonl`: row-level trace from input metadata to normalized signal, triage decision, packet id, owner route, and gate state.
 - `safety_checks.json`: leakage and release-boundary checks for generated artifacts.
+
+Key local artifacts include:
+
+- `run_manifest.json`
+- `operation_trace.jsonl`
+- `review_packets.jsonl`
+- `safety_checks.json`
+
+`demo-output` is local QA output and must not be shared or included in a public package until it has been explicitly sanitized. `safety_checks.json` records `external_ready=false` and the redaction boundary; it does not sanitize or approve the directory.
 
 ## Operation Trace Shape
 
@@ -205,11 +267,7 @@ policy_hook_trace
   public_ready: false
 ```
 
-## Quickstart
-
-Python 3.11+ is required.
-
-### JSONL compatibility example
+## JSONL Compatibility Example
 
 The original JSONL workflow remains available as a separate compatibility path:
 
@@ -224,31 +282,6 @@ python3.11 -m vulca_curator_adapter triage samples/nvidia_release_readiness_meta
 ```
 
 The command writes local review artifacts to `demo-output`. Keep generated artifacts out of a public package unless they have been explicitly sanitized.
-
-## ImageWriterStage Parquet quickstart
-
-Install the optional Parquet dependency and triage the source-first fixture:
-
-```bash
-python3.11 -m pip install -e ".[nemo-parquet]"
-python3.11 -m vulca_curator_adapter triage samples/nemo_image_writer_source_first.parquet \
-  --parser nemo \
-  --profile creative-release \
-  --out demo-output
-```
-
-The fixture is generated locally from readable JSON, and this quickstart does not execute NeMo Curator. It covers only the five-column writer source contract pinned at commit `15cc645cbf9e9314fed9e11fc89f6535ea9a8820`, identified in VULCA as `nemo.image_writer.parquet.source-first.v1`. Optional aesthetic and NSFW scores appear only in the separate enriched fixture.
-
-Key local artifacts include:
-
-- `run_manifest.json`
-- `operation_trace.jsonl`
-- `review_packets.jsonl`
-- `safety_checks.json`
-
-`demo-output` is local QA output and must not be shared or included in a public package until it has been explicitly sanitized. `safety_checks.json` records `external_ready=false` and the redaction boundary; it does not sanitize or approve the directory.
-
-See [docs/nemo-image-writer-parquet-compatibility.md](docs/nemo-image-writer-parquet-compatibility.md) for the pinned sources, observed documentation difference, reproduction steps, and claim boundary.
 
 ## Example Input
 
@@ -300,7 +333,7 @@ The focused candidate uses only shipped, public-safe synthetic fixtures and test
 | Documented-enriched ImageWriter fixture | 2-row documented-enriched Parquet fixture | `samples/nemo_image_writer_documented_enriched.source.json` and `samples/nemo_image_writer_documented_enriched.parquet` |
 | Release-readiness compatibility sample | 4-row JSONL sample | `samples/nvidia_release_readiness_metadata.jsonl` |
 | Mapper, reader, and fixture coverage | focused mapper, reader, and fixture tests | `tests/test_nemo_image_writer.py`, `tests/test_nemo_parquet.py`, and `tests/test_nemo_parquet_fixtures.py` |
-| Local CLI evidence | manifests, operation traces, review packets, and safety outputs generated per run | inspect locally after running the quickstart; these outputs are not shipped in the source candidate |
+| Local CLI evidence | manifests, operation traces, review packets, and safety outputs generated per run | inspect locally after running the relevant reproduction command; these outputs are not shipped in the source candidate |
 
 These fixtures are contract evidence, not a throughput benchmark or a claim about generic NeMo or Cosmos export support.
 
@@ -320,27 +353,13 @@ flowchart LR
 
 | Candidate Surface | Review Purpose | Shipped Content |
 | --- | --- | --- |
-| Root `README.md` | understand architecture, quickstarts, and boundaries | this review guide |
+| Root `README.md` | understand reproduction, reference architecture, and boundaries | this review guide |
 | `docs/nemo-image-writer-parquet-compatibility.md` | verify pinned upstream sources and claim limits | compatibility evidence |
 | readable sources and Parquet fixtures | compare source rows with binary fixture rows | `samples/nemo_image_writer_source_first.source.json`, `samples/nemo_image_writer_source_first.parquet`, `samples/nemo_image_writer_documented_enriched.source.json`, and `samples/nemo_image_writer_documented_enriched.parquet` |
 | adapter code and focused tests | inspect mapping, reading, and fixture generation | `src/vulca_curator_adapter/`, `scripts/build_nemo_image_writer_parquet_fixtures.py`, and the three focused tests |
-| `package_manifest.json` | verify the exact allowlisted candidate contents | generated manifest inside the candidate directory and zip |
+| `package_manifest.json` | verify the exact allowlisted candidate contents | generated manifest included with the candidate package |
 
 Local generated run outputs are not included in the source candidate and remain unapproved.
-
-## Review Path
-
-Recommended review order:
-
-1. Read this `README.md` to understand the workflow-native stage and boundaries.
-2. Read `docs/nemo-image-writer-parquet-compatibility.md` to verify the pinned source contract and claim boundary.
-3. Inspect `package_manifest.json` to confirm the exact allowlisted candidate contents.
-4. Compare the readable JSON sources with both Parquet fixtures and the focused mapper, reader, and fixture tests.
-5. Run the CLI locally and inspect `run_manifest.json`, `operation_trace.jsonl`, `safety_checks.json`, and `review_packets.jsonl`.
-
-The generated run directory stays outside the source candidate. Its contents remain local QA evidence and do not confirm the required human gate.
-
-The useful external conversation is not "does NVIDIA need a new review app?" The useful question is whether release-readiness is the right downstream integration surface for Curator/Cosmos-style workflows.
 
 ## Repository Layout
 
@@ -361,11 +380,3 @@ tests                            focused mapper, reader, and fixture tests
 - All review packets default to `public_ready=false`.
 - Human confirmation is required before any release decision can be treated as final.
 - Only allowlisted source files are copied into a candidate package; local run outputs stay outside it.
-
-## Review Request
-
-The useful review question is narrow:
-
-```text
-Is release-readiness the right downstream integration surface for Curator/Cosmos-style workflows, and who is the right technical or product owner to review this stage?
-```

@@ -4,6 +4,15 @@ A dedicated, source-pinned adapter for the real NeMo Curator `ImageWriterStage` 
 
 > **Engineering handoff.** This repository is prepared for NeMo Curator maintainer review. The request is narrow: validate the pinned boundary and route it to the appropriate technical owner. This is not a recruiting request, and no NVIDIA endorsement or upstream integration is claimed.
 
+## Repository Authority And Release Boundary
+
+The complete implementation is maintained in a controlled VULCA upstream. `vulca-org/vulca-nemo-curator-adapter` is the public distribution authority only for the selected NeMo `ImageWriterStage` Parquet boundary documented here.
+
+- Public-source changes are authored and reviewed in the controlled upstream, then exported through `configs/nemo_parquet_public_files.txt`.
+- Synchronization is one way: controlled upstream to public distribution. Direct public-only edits are not canonical and are not copied back.
+- `package_manifest.json` binds each published file set to its source revision, allowlist, confirmation state, and content digest.
+- The complete upstream repository, local run outputs, internal evidence, and non-allowlisted integrations are outside the public release boundary.
+
 [**Open the two-page technical brief (PDF)**](docs/nvidia-maintainer-handoff.pdf)
 
 | Verified evidence | Public artifact |

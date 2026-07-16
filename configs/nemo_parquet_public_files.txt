@@ -1,3 +1,4 @@
+.github/workflows/public-candidate-ci.yml
 LICENSE
 README.md
 configs/nemo_parquet_public_files.txt
@@ -16,6 +17,7 @@ samples/nemo_image_writer_source_first.source.json
 samples/nvidia_release_readiness_metadata.jsonl
 scripts/build_nemo_image_writer_parquet_fixtures.py
 scripts/build_nvidia_maintainer_handoff.py
+scripts/verify_public_candidate.py
 src/vulca_curator_adapter/__init__.py
 src/vulca_curator_adapter/__main__.py
 src/vulca_curator_adapter/cli.py

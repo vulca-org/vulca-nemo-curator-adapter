@@ -7,12 +7,13 @@
   },
   "human_gate": {
     "confirmed": true,
-    "confirmed_at": "2026-07-15T09:07:51Z",
+    "confirmed_at": "2026-07-16T21:57:36Z",
     "confirmed_by": "project_owner",
     "required": true
   },
-  "included_count": 46,
+  "included_count": 48,
   "included_files": [
+    ".github/workflows/public-candidate-ci.yml",
     "LICENSE",
     "README.md",
     "configs/nemo_parquet_public_files.txt",
@@ -31,6 +32,7 @@
     "samples/nvidia_release_readiness_metadata.jsonl",
     "scripts/build_nemo_image_writer_parquet_fixtures.py",
     "scripts/build_nvidia_maintainer_handoff.py",
+    "scripts/verify_public_candidate.py",
     "src/vulca_curator_adapter/__init__.py",
     "src/vulca_curator_adapter/__main__.py",
     "src/vulca_curator_adapter/cli.py",
@@ -61,8 +63,15 @@
     "tests/test_nemo_parquet_fixtures.py"
   ],
   "package_state": "human_review_confirmed_for_publication",
+  "provenance": {
+    "authority": "controlled_vulca_curator_adapter_upstream",
+    "export_direction": "one_way_upstream_to_public_distribution",
+    "selection_manifest": "configs/nemo_parquet_public_files.txt",
+    "source_revision": "64ba8c80d251dc2fb10b639310da73ab61be4b18",
+    "source_worktree_state": "clean"
+  },
   "publication": {
-    "candidate_digest_sha256": "317fcf67ed522c088bb08755403cc4eeb456ac1fdba03f7a587d616ccc90cc58",
+    "candidate_digest_sha256": "48da7e5d77ce2d2baaea614662419dc7a3c7f58784bdc25bfb70e108098b6680",
     "repository": "vulca-org/vulca-nemo-curator-adapter",
     "source_contents": "exact_curated_candidate",
     "visibility": "public"
